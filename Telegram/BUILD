@@ -1724,7 +1724,7 @@ local_provisioning_profile(
 xcode_provisioning_profile(
    name = "Telegram_xcode_profile",
    managed_by_xcode = True,
-   provisioning_profile = ":Telegram_local_profile",
+   provisioning_profile = None,
     # MIMOSA CI: dummy Team ID for unsigned project generation.
     # Actual signing is disabled by the CI build configuration.
     team_id = "0000000000",
