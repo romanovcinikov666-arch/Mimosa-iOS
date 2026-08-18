@@ -87,6 +87,7 @@ jobs:
             generateProject \
             --disableProvisioningProfiles \
             --xcodeManagedCodesigning \
+            --xcodeManagedCodesigning \
             --configurationPath=build-system/template_minimal_development_configuration.json
 
       - name: Build
