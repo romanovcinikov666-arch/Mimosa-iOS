@@ -30,7 +30,6 @@ load(
     "top_level_targets",
     "top_level_target",
     "xcodeproj",
-    "xcode_provisioning_profile",
 )
 
 
@@ -1727,6 +1726,7 @@ ios_application(
     bundle_id = "{telegram_bundle_id}".format(
         telegram_bundle_id = telegram_bundle_id,
     ),
+    provisioning_profile = None,
     families = ["iphone", "ipad"],
     minimum_os_version = minimum_os_version,
     entitlements = ":TelegramEntitlements.entitlements",
