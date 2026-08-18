@@ -1726,7 +1726,7 @@ ios_application(
     bundle_id = "{telegram_bundle_id}".format(
         telegram_bundle_id = telegram_bundle_id,
     ),
-    provisioning_profile = "":Telegram.mobileprovision"",
+    provisioning_profile = ":Telegram.mobileprovision",
     families = ["iphone", "ipad"],
     minimum_os_version = minimum_os_version,
     entitlements = ":TelegramEntitlements.entitlements",
