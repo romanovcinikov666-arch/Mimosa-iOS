@@ -81,12 +81,11 @@ jobs:
         run: |
           rm -rf "$HOME/telegram-bazel-cache"
           rm -rf build-input/bazel-*
-          mkdir -p /tmp/empty_codesigning/profiles
 
           python3 build-system/Make/Make.py \
             generateProject \
             --disableProvisioningProfiles \
-            --codesigningInformationPath=/tmp/empty_codesigning \
+            --xcodeManagedCodesigning \
             --configurationPath=build-system/template_minimal_development_configuration.json
 
       - name: Build
