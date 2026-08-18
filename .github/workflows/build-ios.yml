@@ -84,8 +84,8 @@ jobs:
 
           python3 build-system/Make/Make.py \
             generateProject \
-            --configurationPath=build-system/template_minimal_development_configuration.json \
-            --xcodeManagedCodesigning
+            --disableProvisioningProfiles \
+            --configurationPath=build-system/template_minimal_development_configuration.json
 
       - name: Build
         env:
@@ -94,8 +94,7 @@ jobs:
         run: |
           python3 build-system/Make/Make.py \
             build \
-            --configurationPath=build-system/template_minimal_development_configuration.json \
-            --xcodeManagedCodesigning \
+            --configurationPath=build-system/template_minimal_development_configuration.json
             --configuration=debug_arm64 \
             --buildNumber=10000
 
