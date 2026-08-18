@@ -10,6 +10,8 @@ def remove_directory(path):
         shutil.rmtree(path)
 
 def generate_xcodeproj(build_environment: BuildEnvironment, disable_extensions, disable_provisioning_profiles, include_release, generate_dsym, bazel_app_arguments, target_name):
+    # MIMOSA CI: do not require Apple provisioning profiles / Team ID.
+    disable_provisioning_profiles = True
     if '/' in target_name:
         app_target_spec = target_name.split('/')[0] + '/' + target_name.split('/')[1] + ':' + target_name.split('/')[1]
         app_target = target_name
