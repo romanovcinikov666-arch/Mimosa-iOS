@@ -85,7 +85,7 @@ jobs:
           python3 build-system/Make/Make.py \
             generateProject \
             --disableProvisioningProfiles \
-            --xcodeManagedCodesigning \
+            --codesigningInformationPath=build-system/fake-codesigning \
             --configurationPath=build-system/template_minimal_development_configuration.json
 
       - name: Build
