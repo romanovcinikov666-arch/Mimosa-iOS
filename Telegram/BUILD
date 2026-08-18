@@ -1743,6 +1743,9 @@ xcode_provisioning_profile(
    name = "Telegram_xcode_profile",
    managed_by_xcode = True,
    provisioning_profile = ":Telegram_local_profile",
+    # MIMOSA CI: dummy Team ID for unsigned project generation.
+    # Actual signing is disabled by the CI build configuration.
+    team_id = "0000000000",
 )
 
 apple_prebuilt_watchos_application(
