@@ -1722,7 +1722,6 @@ local_provisioning_profile(
 )
 
 apple_prebuilt_watchos_application(
-    provisioning_profile = ":Telegram_local_profile",
     name = "TelegramWatchApp",
     # Watch bundle id tracks the host config ("<host>.watchkitapp"). The rule passes it
     # to xcodebuild as PRODUCT_BUNDLE_IDENTIFIER (baked + signed); the watch Info.plist
