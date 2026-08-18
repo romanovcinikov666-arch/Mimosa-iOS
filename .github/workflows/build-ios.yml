@@ -1,0 +1,78 @@
+name: Mimosa iOS Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  build:
+    name: Build Mimosa iOS
+    runs-on: macos-15-intel
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Show environment
+        run: |
+          sw_vers
+          xcodebuild -version
+          xcode-select -p
+          python3 --version
+
+      - name: Verify Mimosa network patch
+        run: |
+          grep -n -A25 -B5 \
+            'MIMOSA_SERVER_IP' \
+            submodules/TelegramCore/Sources/Network/Network.swift
+
+      - name: Check submodules
+        run: |
+          git submodule status --recursive
+
+      - name: Generate Xcode project
+        env:
+          MIMOSA_SERVER_IP: ${{ secrets.MIMOSA_SERVER_IP }}
+          MIMOSA_SERVER_PORT: ${{ secrets.MIMOSA_SERVER_PORT }}
+        run: |
+          python3 build-system/Make/Make.py \
+            --cacheDir="$HOME/telegram-bazel-cache" \
+            generateProject \
+            --configurationPath=build-system/template_minimal_development_configuration.json \
+            --xcodeManagedCodesigning
+
+      - name: Build
+        env:
+          MIMOSA_SERVER_IP: ${{ secrets.MIMOSA_SERVER_IP }}
+          MIMOSA_SERVER_PORT: ${{ secrets.MIMOSA_SERVER_PORT }}
+        run: |
+          python3 build-system/Make/Make.py \
+            --cacheDir="$HOME/telegram-bazel-cache" \
+            build \
+            --configurationPath=build-system/template_minimal_development_configuration.json \
+            --disableProvisioningProfiles \
+            --configuration=debug
+
+      - name: Find build artifacts
+        if: always()
+        run: |
+          echo "===== BUILD FILES ====="
+          find build build-input -type f \
+            \( -name "*.app" -o -name "*.ipa" \) \
+            -print 2>/dev/null || true
+
+      - name: Upload artifacts
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Mimosa-iOS
+          path: |
+            build/**/*.app
+            build/**/*.ipa
+          if-no-files-found: warn
