@@ -1351,7 +1351,7 @@ swift_library(
     ]
 )'''
 
-ios_extension(
+'''ios_extension(
     name = "IntentsExtension",
     bundle_id = "{telegram_bundle_id}.SiriIntents".format(
         telegram_bundle_id = telegram_bundle_id,
@@ -1376,6 +1376,7 @@ ios_extension(
         ":TelegramCoreFramework",
     ],
 )
+'''
 
 plist_fragment(
     name = "BroadcastUploadInfoPlist",
