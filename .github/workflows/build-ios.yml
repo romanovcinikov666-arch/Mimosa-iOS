@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     name: Build Mimosa iOS
-    runs-on: macos-15-intel
+    runs-on: macos-26
 
     steps:
       - name: Checkout
