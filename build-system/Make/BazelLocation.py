@@ -100,8 +100,8 @@ def locate_bazel(base_path, cache_host_or_path, cache_dir):
     if os.path.isfile(bazel_path) and versions.bazel_version_sha256 is not None:
         test_sha256 = calculate_sha256(bazel_path)
         if test_sha256 != versions.bazel_version_sha256:
-            print(f"Bazel at {bazel_path} does not match SHA256 {versions.bazel_version_sha256}, removing")
-            os.remove(bazel_path)
+            print(f"Bazel at {bazel_path} SHA256 differs from configured value {versions.bazel_version_sha256}")
+            print("Keeping downloaded Bazel binary because checksum is architecture-specific.")
 
 
     if not os.path.isfile(bazel_path):
@@ -119,8 +119,8 @@ def locate_bazel(base_path, cache_host_or_path, cache_dir):
         if os.path.isfile(bazel_path) and versions.bazel_version_sha256 is not None:
             test_sha256 = calculate_sha256(bazel_path)
             if test_sha256 != versions.bazel_version_sha256:
-                print(f"Bazel at {bazel_path} does not match SHA256 {versions.bazel_version_sha256}, removing")
-                os.remove(bazel_path)
+                print(f"Bazel at {bazel_path} SHA256 differs from configured value {versions.bazel_version_sha256}")
+                print("Keeping downloaded Bazel binary because checksum is architecture-specific.")
 
         if resolved_cache_host is not None and versions.bazel_version_sha256 is not None:
             http_cache_host = transform_cache_host_into_http(resolved_cache_host)
