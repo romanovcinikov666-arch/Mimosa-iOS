@@ -1034,7 +1034,6 @@ ios_extension(
         ":AppNameInfoPlist",
     ],
     minimum_os_version = minimum_os_version,
-    provisioning_profile = None,
     deps = [":ShareExtensionLib"],
     frameworks = [
         ":TelegramUIFramework"
@@ -1138,7 +1137,6 @@ ios_extension(
     ],
     minimum_os_version = minimum_os_version, # maintain the same minimum OS version across extensions
     #ipa_post_processor = ":SetMinOsVersionNotificationContentExtension",
-    provisioning_profile = None,
     deps = [":NotificationContentExtensionLib"],
     frameworks = [
         ":TelegramUIFramework"
@@ -1241,7 +1239,6 @@ ios_extension(
     minimum_os_version = minimum_os_version, # maintain the same minimum OS version across extensions
     ipa_post_processor = ":SetMinOsVersionWidgetExtension",
     #provides_main = True,
-    provisioning_profile = None,
     deps = [
         ":WidgetExtensionLib",
     ],
@@ -1374,7 +1371,6 @@ ios_extension(
     ],
     minimum_os_version = minimum_os_version, # maintain the same minimum OS version across extensions
     #ipa_post_processor = ":SetMinOsVersionIntentsExtension",
-    provisioning_profile = None,
     deps = [":IntentsExtensionLib"],
     frameworks = [
         ":SwiftSignalKitFramework",
@@ -1466,7 +1462,6 @@ ios_extension(
     ],
     minimum_os_version = minimum_os_version, # maintain the same minimum OS version across extensions
     #ipa_post_processor = ":SetMinOsVersionBroadcastUploadExtension",
-    provisioning_profile = None,
     deps = [":BroadcastUploadExtensionLib"],
     frameworks = [
         ":TelegramUIFramework",
@@ -1523,7 +1518,6 @@ ios_extension(
         ":AppNameInfoPlist",
     ],
     minimum_os_version = minimum_os_version, # maintain the same minimum OS version across extensions
-    provisioning_profile = None,
     deps = ["//Telegram/NotificationService:NotificationServiceExtensionLib"],
     frameworks = [
         ":MtProtoKitFramework",
@@ -1736,12 +1730,12 @@ apple_prebuilt_watchos_application(
 
 ios_application(
     name = "Telegram",
+    provisioning_profile = ":Telegram_local_profile",
     bundle_id = "{telegram_bundle_id}".format(
         telegram_bundle_id = telegram_bundle_id,
     ),
     families = ["iphone", "ipad"],
     minimum_os_version = minimum_os_version,
-    provisioning_profile = None,
     entitlements = ":TelegramEntitlements.entitlements",
     infoplists = [
         ":TelegramInfoPlist",
@@ -1855,7 +1849,6 @@ ios_application(
     ),
     families = ["iphone", "ipad"],
     minimum_os_version = minimum_os_version,
-    provisioning_profile = None,
     entitlements = ":TelegramEntitlements.entitlements",
     infoplists = [
         ":TelegramInfoPlist",
@@ -1895,7 +1888,6 @@ ios_application(
     ),
     families = ["iphone", "ipad"],
     minimum_os_version = minimum_os_version,
-    provisioning_profile = None,
     entitlements = ":TelegramEntitlements.entitlements",
     infoplists = [
         ":TelegramInfoPlist",
@@ -1917,7 +1909,6 @@ ios_application(
     ),
     families = ["iphone", "ipad"],
     minimum_os_version = minimum_os_version,
-    provisioning_profile = None,
     entitlements = ":TelegramEntitlements.entitlements",
     infoplists = [
         ":TelegramInfoPlist",
