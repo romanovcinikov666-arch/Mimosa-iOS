@@ -25,6 +25,7 @@ jobs:
           xcodebuild -version
           xcode-select -p
           python3 --version
+          uname -m
 
       - name: Verify Mimosa network patch
         run: |
@@ -36,13 +37,45 @@ jobs:
         run: |
           git submodule status --recursive
 
+      - name: Verify Bazel download
+        run: |
+          set -eux
+
+          BAZEL_VERSION="$(python3 -c 'import json; print(json.load(open("versions.json"))["bazel"].split(":")[0])')"
+          BAZEL_SHA="$(python3 -c 'import json; print(json.load(open("versions.json"))["bazel"].split(":")[1])')"
+
+          echo "Bazel version: $BAZEL_VERSION"
+          echo "Expected SHA256: $BAZEL_SHA"
+
+          URL="https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-darwin-x86_64"
+
+          echo "Downloading:"
+          echo "$URL"
+
+          curl -fL "$URL" -o /tmp/bazel-test
+
+          echo "Actual SHA256:"
+          shasum -a 256 /tmp/bazel-test
+
+          ACTUAL_SHA="$(shasum -a 256 /tmp/bazel-test | awk '{print $1}')"
+
+          if [ "$ACTUAL_SHA" != "$BAZEL_SHA" ]; then
+            echo "ERROR: Bazel SHA256 mismatch"
+            exit 1
+          fi
+
+          chmod +x /tmp/bazel-test
+          /tmp/bazel-test --version
+
       - name: Generate Xcode project
         env:
           MIMOSA_SERVER_IP: ${{ secrets.MIMOSA_SERVER_IP }}
           MIMOSA_SERVER_PORT: ${{ secrets.MIMOSA_SERVER_PORT }}
         run: |
+          rm -rf "$HOME/telegram-bazel-cache"
+          rm -rf build-input/bazel-*
+
           python3 build-system/Make/Make.py \
-            --cacheDir="$HOME/telegram-bazel-cache" \
             generateProject \
             --configurationPath=build-system/template_minimal_development_configuration.json \
             --xcodeManagedCodesigning
@@ -53,7 +86,6 @@ jobs:
           MIMOSA_SERVER_PORT: ${{ secrets.MIMOSA_SERVER_PORT }}
         run: |
           python3 build-system/Make/Make.py \
-            --cacheDir="$HOME/telegram-bazel-cache" \
             build \
             --configurationPath=build-system/template_minimal_development_configuration.json \
             --disableProvisioningProfiles \
