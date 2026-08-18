@@ -1015,6 +1015,7 @@ swift_library(
     ],
 )
 
+'''
 ios_extension(
     name = "ShareExtension",
     bundle_id = "{telegram_bundle_id}.Share".format(
@@ -1037,6 +1038,7 @@ ios_extension(
         ":TelegramUIFramework"
     ],
 )
+'''
 
 plist_fragment(
     name = "NotificationContentInfoPlist",
@@ -1117,6 +1119,7 @@ swift_library(
     ]
 )'''
 
+'''
 ios_extension(
     name = "NotificationContentExtension",
     bundle_id = "{telegram_bundle_id}.NotificationContent".format(
@@ -1140,6 +1143,7 @@ ios_extension(
         ":TelegramUIFramework"
     ],
 )
+'''
 
 plist_fragment(
     name = "WidgetInfoPlist",
@@ -1444,6 +1448,7 @@ swift_library(
     ]
 )'''
 
+'''
 ios_extension(
     name = "BroadcastUploadExtension",
     bundle_id = "{telegram_bundle_id}.BroadcastUpload".format(
@@ -1468,6 +1473,7 @@ ios_extension(
         ":SwiftSignalKitFramework",
     ],
 )
+'''
 
 plist_fragment(
     name = "NotificationServiceInfoPlist",
@@ -1501,6 +1507,7 @@ plist_fragment(
     )
 )
 
+'''
 ios_extension(
     name = "NotificationServiceExtension" + notificationServiceExtensionVersion,
     bundle_id = "{telegram_bundle_id}.NotificationService".format(
@@ -1527,6 +1534,7 @@ ios_extension(
         ":TelegramUIFramework",
     ],
 )
+'''
 
 plist_fragment(
     name = "TelegramInfoPlist",
