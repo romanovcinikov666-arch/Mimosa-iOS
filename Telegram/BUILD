@@ -1218,7 +1218,7 @@ genrule(
     ]
 )
 
-ios_extension(
+'''ios_extension(
     name = "WidgetExtension",
     bundle_id = "{telegram_bundle_id}.Widget".format(
         telegram_bundle_id = telegram_bundle_id,
@@ -1249,6 +1249,7 @@ ios_extension(
         "//visibility:public",
     ]
 )
+'''
 
 plist_fragment(
     name = "IntentsInfoPlist",
