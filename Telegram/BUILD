@@ -1018,6 +1018,7 @@ swift_library(
 )
 
 ios_extension(
+    provisioning_profile = ":Telegram_local_profile",
     name = "ShareExtension",
     bundle_id = "{telegram_bundle_id}.Share".format(
         telegram_bundle_id = telegram_bundle_id,
@@ -1120,6 +1121,7 @@ swift_library(
 )'''
 
 ios_extension(
+    provisioning_profile = ":Telegram_local_profile",
     name = "NotificationContentExtension",
     bundle_id = "{telegram_bundle_id}.NotificationContent".format(
         telegram_bundle_id = telegram_bundle_id,
@@ -1221,6 +1223,7 @@ genrule(
 )
 
 ios_extension(
+    provisioning_profile = ":Telegram_local_profile",
     name = "WidgetExtension",
     bundle_id = "{telegram_bundle_id}.Widget".format(
         telegram_bundle_id = telegram_bundle_id,
@@ -1354,6 +1357,7 @@ swift_library(
 )'''
 
 ios_extension(
+    provisioning_profile = ":Telegram_local_profile",
     name = "IntentsExtension",
     bundle_id = "{telegram_bundle_id}.SiriIntents".format(
         telegram_bundle_id = telegram_bundle_id,
@@ -1445,6 +1449,7 @@ swift_library(
 )'''
 
 ios_extension(
+    provisioning_profile = ":Telegram_local_profile",
     name = "BroadcastUploadExtension",
     bundle_id = "{telegram_bundle_id}.BroadcastUpload".format(
         telegram_bundle_id = telegram_bundle_id,
@@ -1502,6 +1507,7 @@ plist_fragment(
 )
 
 ios_extension(
+    provisioning_profile = ":Telegram_local_profile",
     name = "NotificationServiceExtension" + notificationServiceExtensionVersion,
     bundle_id = "{telegram_bundle_id}.NotificationService".format(
         telegram_bundle_id = telegram_bundle_id,
@@ -1716,6 +1722,7 @@ local_provisioning_profile(
 )
 
 apple_prebuilt_watchos_application(
+    provisioning_profile = ":Telegram_local_profile",
     name = "TelegramWatchApp",
     # Watch bundle id tracks the host config ("<host>.watchkitapp"). The rule passes it
     # to xcodebuild as PRODUCT_BUNDLE_IDENTIFIER (baked + signed); the watch Info.plist
