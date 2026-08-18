@@ -1750,10 +1750,7 @@ ios_application(
     ),
     families = ["iphone", "ipad"],
     minimum_os_version = minimum_os_version,
-    provisioning_profile = select({
-        ":disableProvisioningProfilesSetting": None,
-        "//conditions:default": ":Telegram_xcode_profile" if telegram_use_xcode_managed_codesigning else "@build_configuration//provisioning:Telegram.mobileprovision",
-    }),
+    provisioning_profile = None,
     entitlements = ":TelegramEntitlements.entitlements",
     infoplists = [
         ":TelegramInfoPlist",
