@@ -89,6 +89,7 @@ jobs:
             build \
             --configurationPath=build-system/template_minimal_development_configuration.json \
             --disableProvisioningProfiles \
+            --xcodeManagedCodesigning \
             --configuration=debug_arm64 \
             --buildNumber=10000
 
