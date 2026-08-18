@@ -1721,12 +1721,6 @@ local_provisioning_profile(
     team_id = telegram_team_id,
 )
 
-xcode_provisioning_profile(
-    name = "Telegram_xcode_profile",
-    managed_by_xcode = True,
-    provisioning_profile = None,
-    team_id = "0000000000",
-)
 apple_prebuilt_watchos_application(
     name = "TelegramWatchApp",
     # Watch bundle id tracks the host config ("<host>.watchkitapp"). The rule passes it
